@@ -1,0 +1,5 @@
+# Customized setings for smst
+
+# Define nice level for smst 
+SERVICE_RUN_NICE_LEVEL="+5"
+
