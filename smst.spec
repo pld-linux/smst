@@ -63,7 +63,7 @@ rm -rf $RPM_BUILD_ROOT
 if [ -f /etc/jabber/secret ] ; then
 	SECRET=`cat /etc/jabber/secret`
 	if [ -n "$SECRET" ] ; then
-        	echo "Updating component authentication secret in smst.rc..."
+		echo "Updating component authentication secret in smst.rc..."
 		perl -pi -e "s/'secret'/'$SECRET'/" /etc/jabber/smst.rc
 	fi
 fi
