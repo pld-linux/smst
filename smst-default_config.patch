@@ -1,0 +1,15 @@
+diff -durN smst-R4.orig/smst.pl smst-R4/smst.pl
+--- smst-R4.orig/smst.pl	Tue Sep 16 09:06:35 2003
++++ smst-R4/smst.pl	Tue Sep 16 09:08:44 2003
+@@ -20,9 +20,9 @@
+ # BEGIN CONFIGURATION
+ use constant SERVICE_NAME => 'sms.localhost';   # full name of the SMS transport.
+ use constant SERVER       => '127.0.0.1';       # ip/hostname of the jabber server to connect to
+-use constant PORT         => 7010;              # port on the jabber server to connect to
++use constant PORT         => 5347;              # port on the jabber server to connect to
+ use constant SECRET       => 'secret';          # SECRET phrase for jabber component connection.
+-use constant PASSWORDS    => './pass';          # spool file for 1stWap gateway passwords
++use constant PASSWORDS    => '/var/lib/smst/pass';          # spool file for 1stWap gateway passwords
+ # END BASIC CONFIGURATION
+ 
+ # BEGIN EXTRA CONFIGURATION
