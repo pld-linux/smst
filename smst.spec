@@ -7,6 +7,7 @@ Release:	1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.jabberstudio.org/files/sms-transport/%{name}-%{version}.tar.gz
+# Source0-md5:	ff25330ccee0faf52ea343f906ce1846
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Patch0:		%{name}-external_config.patch
