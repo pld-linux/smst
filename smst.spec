@@ -15,6 +15,8 @@ Patch1:		%{name}-default_config.patch
 URL:		http://www.jabberstudio.org/projects/sms-transport
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
+Requires(post):	perl-base
+Requires(post):	textutils
 Requires:	daemon
 Requires:	jabber-common
 BuildArch:	noarch
@@ -23,6 +25,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Jabber server component that enables users to send Short Messages to
 Cellular phones (popular SMS) using operator's web services.
+
+%description -l pl
+Komponent serwera Jabbera pozwalaj±cy u¿ytkownikom wysy³aæ krótkie
+wiadomo¶ci (popularnie zwane SMS-ami) do telefonów komórkowych przy
+u¿yciu serwisów WWW operatorów.
 
 %prep
 %setup -q
