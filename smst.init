@@ -1,8 +1,8 @@
 #!/bin/sh
-# Janchor - Jabber to SMS gateway
+# Jabber SMS Transport - Jabber to SMS gateway
 # 
 # chkconfig:	345 85 05
-# description:	Janchor - Jabber to SMS gateway
+# description:	Jabber SMS Transport - Jabber to SMS gateway
 
 # Source function library
 . /etc/rc.d/init.d/functions
@@ -29,7 +29,7 @@ case "$1" in
   start)
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/smst ]; then
-		msg_starting "JAnchor"
+		msg_starting "Jabber SMS Transport"
 		daemon /usr/sbin/daemon -D /var/lib/smst -u jabber -P /var/run/jabber \
 			-o daemon.info -r -n smst /usr/sbin/smst
 		RETVAL=$?
@@ -41,7 +41,7 @@ case "$1" in
   stop)
 	# Check if the service is already running?
 	if [ -f /var/lock/subsys/smst ]; then
-		msg_stopping "JAnchor"
+		msg_stopping "Jabber SMS Transport"
 		busy
 		/usr/sbin/daemon -P /var/run/jabber --stop -n smst && ok || fail
 		rm -f /var/lock/subsys/smst
