@@ -16,13 +16,13 @@ URL:		http://www.jabberstudio.org/projects/sms-transport
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 Requires:	daemon
+Requires:	jabber-common
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Jabber server component that enables users to send Short Messages to
 Cellular phones (popular SMS) using operator's web services.
-
 
 %prep
 %setup -q
@@ -40,11 +40,11 @@ BEGIN { config=0; }
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_sbindir}} \
+install -d $RPM_BUILD_ROOT{%{_sysconfdir}/jabber,%{_sbindir}} \
 	$RPM_BUILD_ROOT{/etc/rc.d/init.d,/etc/sysconfig,/var/log,/var/lib/smst}
 
 install smst.pl $RPM_BUILD_ROOT%{_sbindir}/smst
-install smst.rc $RPM_BUILD_ROOT%{_sysconfdir}/smst.rc
+install smst.rc $RPM_BUILD_ROOT%{_sysconfdir}/jabber/smst.rc
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/smst
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/smst
 touch $RPM_BUILD_ROOT/var/log/smst.log
@@ -53,6 +53,14 @@ touch $RPM_BUILD_ROOT/var/log/smst.log
 rm -rf $RPM_BUILD_ROOT
 
 %post
+if [ -f /etc/jabber/secret ] ; then
+	SECRET=`cat /etc/jabber/secret`
+	if [ -n "$SECRET" ] ; then
+        	echo "Updating component authentication secret in smst.rc..."
+		perl -pi -e "s/'secret'/'$SECRET'/" /etc/jabber/smst.rc
+	fi
+fi
+
 /sbin/chkconfig --add smst
 if [ -r /var/lock/subsys/smst ]; then
 	/etc/rc.d/init.d/smst restart >&2
@@ -71,7 +79,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/*
-%attr(640,root,jabber) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/smst.rc
+%attr(640,root,jabber) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/jabber/smst.rc
 %attr(754,root,root) /etc/rc.d/init.d/smst
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/smst
 %attr(664,root,jabber) /var/log/smst.log

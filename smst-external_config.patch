@@ -6,7 +6,7 @@ diff -durN smst-R4.orig/smst.pl smst-R4/smst.pl
  # END EXTRA CONFIGURATION
  
 +BEGIN {
-+	do '/etc/smst.rc';
++	do '/etc/jabber/smst.rc';
 +}
 +
  #
