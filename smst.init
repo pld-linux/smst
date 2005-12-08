@@ -1,6 +1,6 @@
 #!/bin/sh
 # Jabber SMS Transport - Jabber to SMS gateway
-# 
+#
 # chkconfig:	345 85 05
 # description:	Jabber SMS Transport - Jabber to SMS gateway
 
