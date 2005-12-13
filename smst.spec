@@ -13,10 +13,10 @@ Source2:	%{name}.sysconfig
 Patch0:		%{name}-external_config.patch
 Patch1:		%{name}-default_config.patch
 URL:		http://www.jabberstudio.org/projects/sms-transport
-PreReq:		rc-scripts
-Requires(post,preun):	/sbin/chkconfig
+Requires:	rc-scripts
 Requires(post):	perl-base
 Requires(post):	textutils
+Requires(post,preun):	/sbin/chkconfig
 Requires:	daemon
 Requires:	jabber-common
 BuildArch:	noarch
@@ -86,8 +86,8 @@ fi
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/*
-%attr(640,root,jabber) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/jabber/smst.rc
+%attr(640,root,jabber) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/jabber/smst.rc
 %attr(754,root,root) /etc/rc.d/init.d/smst
-%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/smst
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/smst
 %attr(664,root,jabber) /var/log/smst.log
 %dir %attr(775,root,jabber) /var/lib/smst
