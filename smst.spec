@@ -13,12 +13,12 @@ Source2:	%{name}.sysconfig
 Patch0:		%{name}-external_config.patch
 Patch1:		%{name}-default_config.patch
 URL:		http://www.jabberstudio.org/projects/sms-transport
-Requires:	rc-scripts
-Requires(post):	perl-base
+Requires(post):	sed >= 4.0
 Requires(post):	textutils
 Requires(post,preun):	/sbin/chkconfig
 Requires:	daemon
 Requires:	jabber-common
+Requires:	rc-scripts
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -60,11 +60,11 @@ touch $RPM_BUILD_ROOT/var/log/smst.log
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ -f /etc/jabber/secret ] ; then
-	SECRET=`cat /etc/jabber/secret`
+if [ -f %{_sysconfdir}/jabber/secret ] ; then
+	SECRET=`cat %{_sysconfdir}/jabber/secret`
 	if [ -n "$SECRET" ] ; then
 		echo "Updating component authentication secret in smst.rc..."
-		perl -pi -e "s/'secret'/'$SECRET'/" /etc/jabber/smst.rc
+		%{__sed} -i -e "s/'secret'/'$SECRET'/" /etc/jabber/smst.rc
 	fi
 fi
 
