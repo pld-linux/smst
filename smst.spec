@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	SMS Transport - Jabber to SMS gateway
-Summary(pl):	Bramka z Jabbera do SMS
+Summary(pl.UTF-8):   Bramka z Jabbera do SMS
 Name:		smst
 Version:	R4
 Release:	1
@@ -26,10 +26,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Jabber server component that enables users to send Short Messages to
 Cellular phones (popular SMS) using operator's web services.
 
-%description -l pl
-Komponent serwera Jabbera pozwalaj±cy uøytkownikom wysy≥aÊ krÛtkie
-wiadomo∂ci (popularnie zwane SMS-ami) do telefonÛw komÛrkowych przy
-uøyciu serwisÛw WWW operatorÛw.
+%description -l pl.UTF-8
+Komponent serwera Jabbera pozwalajƒÖcy u≈ºytkownikom wysy≈Çaƒá kr√≥tkie
+wiadomo≈õci (popularnie zwane SMS-ami) do telefon√≥w kom√≥rkowych przy
+u≈ºyciu serwis√≥w WWW operator√≥w.
 
 %prep
 %setup -q
