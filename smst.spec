@@ -1,4 +1,3 @@
-%include	/usr/lib/rpm/macros.perl
 Summary:	SMS Transport - Jabber to SMS gateway
 Summary(pl.UTF-8):	Bramka z Jabbera do SMS
 Name:		smst
